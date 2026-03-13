@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+<html lang="th" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Portfolio | 3rd Year Student</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts (Kanit & Inter) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Kanit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- AOS Animation CSS -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+    <!-- Custom Tailwind Config & Styles -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Kanit', 'sans-serif'],
+                        en: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        primary: '#4F46E5', // Indigo-600
+                        secondary: '#EC4899', // Pink-500
+                        dark: '#0F172A',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1; 
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e1; 
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8; 
+        }
+        
+        /* Gradient Text */
+        .text-gradient {
+            background: linear-gradient(135deg, #4F46E5 0%, #EC4899 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        /* Glassmorphism */
+        .glass {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        /* Blob Animation */
+        .blob {
+            animation: blob 7s infinite;
+        }
+        @keyframes blob {
+            0% { transform: translate(0px, 0px) scale(1); }
+            33% { transform: translate(30px, -50px) scale(1.1); }
+            66% { transform: translate(-20px, 20px) scale(0.9); }
+            100% { transform: translate(0px, 0px) scale(1); }
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 antialiased overflow-x-hidden">
+
+    <!-- Navigation -->
+    <nav class="fixed w-full z-50 glass transition-all duration-300" id="navbar">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <!-- Logo -->
+                <div class="flex-shrink-0 flex items-center cursor-pointer" onclick="window.scrollTo(0,0)">
+                    <span class="text-2xl font-bold font-en text-gradient">Port<span class="text-slate-800">folio.</span></span>
+                </div>
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex space-x-8">
+                    <a href="#home" class="text-slate-600 hover:text-primary font-medium transition-colors">หน้าแรก</a>
+                    <a href="#about" class="text-slate-600 hover:text-primary font-medium transition-colors">เกี่ยวกับฉัน</a>
+                    <a href="#skills" class="text-slate-600 hover:text-primary font-medium transition-colors">ทักษะ</a>
+                    <a href="#projects" class="text-slate-600 hover:text-primary font-medium transition-colors">ผลงาน</a>
+                    <a href="#contact" class="text-slate-600 hover:text-primary font-medium transition-colors">ติดต่อ</a>
+                </div>
+                <!-- Mobile menu button -->
+                <div class="md:hidden flex items-center">
+                    <button id="mobile-menu-btn" class="text-slate-600 hover:text-primary focus:outline-none">
+                        <i class="fas fa-bars text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white shadow-lg absolute w-full left-0">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3 text-center">
+                <a href="#home" class="block px-3 py-2 text-slate-600 hover:text-primary font-medium mobile-link">หน้าแรก</a>
+                <a href="#about" class="block px-3 py-2 text-slate-600 hover:text-primary font-medium mobile-link">เกี่ยวกับฉัน</a>
+                <a href="#skills" class="block px-3 py-2 text-slate-600 hover:text-primary font-medium mobile-link">ทักษะ</a>
+                <a href="#projects" class="block px-3 py-2 text-slate-600 hover:text-primary font-medium mobile-link">ผลงาน</a>
+                <a href="#contact" class="block px-3 py-2 text-slate-600 hover:text-primary font-medium mobile-link">ติดต่อ</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="relative min-h-screen flex items-center justify-center pt-16 overflow-hidden">
+        <!-- Background Blobs -->
+        <div class="absolute top-20 -left-20 w-72 h-72 bg-purple-300 rounded-full mix-blend-multiply filter blur-2xl opacity-70 blob"></div>
+        <div class="absolute top-40 -right-20 w-72 h-72 bg-yellow-300 rounded-full mix-blend-multiply filter blur-2xl opacity-70 blob animation-delay-2000"></div>
+        <div class="absolute -bottom-8 left-20 w-72 h-72 bg-pink-300 rounded-full mix-blend-multiply filter blur-2xl opacity-70 blob animation-delay-4000"></div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
+            <div class="flex flex-col-reverse md:flex-row items-center justify-between gap-12">
+                
+                <!-- Text Content -->
+                <div class="w-full md:w-1/2 text-center md:text-left" data-aos="fade-right" data-aos-duration="1000">
+                    <span class="inline-block py-1 px-3 rounded-full bg-primary/10 text-primary font-medium text-sm mb-4">
+                        🚀 พร้อมรับการฝึกงาน (Looking for Internship)
+                    </span>
+                    <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-slate-800 mb-4 leading-tight">
+                        สวัสดีครับ <br>
+                        <span class="text-gradient">ผมชื่อ นาย ปฐมพร เรืองแก้ว</span>
+                    </h1>
+                    <h2 class="text-xl md:text-2xl text-slate-600 mb-6">
+                        นักศึกษาปี 3 สาขาเทคโนโลยีสารสนเทศและนวัตกรรมดิจิทัล(ITDI<br>
+                        <span class="text-primary font-semibold">@ มหาวิทยาลัยราชภัฎสงขลา</span>
+                    </h2>
+                    <p class="text-slate-500 mb-8 max-w-lg mx-auto md:mx-0">
+                        มีความสนใจในด้าน Web Development, UI/UX Design และเทคโนโลยี IoT กำลังมองหาโอกาสในการฝึกงานเพื่อพัฒนาทักษะและเรียนรู้ประสบการณ์การทำงานจริง
+                    </p>
+                    <div class="flex flex-col sm:flex-row items-center justify-center md:justify-start gap-4">
+                        <a href="#projects" class="w-full sm:w-auto px-8 py-3 bg-primary text-white rounded-full font-medium hover:bg-indigo-700 transition-colors shadow-lg shadow-primary/30 text-center">
+                            ดูผลงานของผม
+                        </a>
+                        
+                        <!-- อัปเดตลิงก์เป็นแบบ Direct Download แล้ว -->
+                        <a href="https://drive.google.com/uc?export=download&id=1cFEk35BX2D9BHFZ855KScVQLgSgo2a6a" target="_blank" class="w-full sm:w-auto px-8 py-3 bg-white text-slate-700 border border-slate-200 rounded-full font-medium hover:bg-slate-50 hover:border-slate-300 transition-colors text-center flex items-center justify-center gap-2">
+                            <i class="fas fa-download"></i> โหลด Resume
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Profile Image -->
+                <div class="w-full md:w-1/2 flex justify-center" data-aos="fade-left" data-aos-duration="1000">
+                    <div class="relative w-64 h-64 md:w-80 md:h-80 lg:w-96 lg:h-96 rounded-full p-2 bg-gradient-to-tr from-primary to-secondary shadow-2xl">
+                        <!-- เปลี่ยน URL รูปภาพด้านล่างเป็นรูปของคุณ -->
+                        <img src="https://i.postimg.cc/1zfFThrF/ssss.jpg" alt="Profile Picture" class="w-full h-full object-cover rounded-full border-4 border-white">
+                        
+                        <!-- Floating Badges -->
+                        <div class="absolute top-10 -left-6 bg-white px-4 py-2 rounded-xl shadow-lg flex items-center gap-2 animate-bounce" style="animation-duration: 3s;">
+                            <i class="fab fa-html5 text-orange-500 text-2xl"></i>
+                            <span class="font-bold text-sm">Hello world</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h2 class="text-3xl font-bold text-slate-800 inline-block relative">
+                    เกี่ยวกับฉัน
+                    <div class="absolute w-1/2 h-1 bg-primary bottom-0 left-1/4 rounded-full mt-2"></div>
+                </h2>
+            </div>
+
+            <div class="flex flex-col lg:flex-row gap-12 items-center">
+                <!-- Education Timeline -->
+                <div class="w-full lg:w-1/2" data-aos="fade-right">
+                    <h3 class="text-2xl font-bold text-slate-800 mb-6 flex items-center gap-2">
+                        <i class="fas fa-graduation-cap text-primary"></i> ประวัติการศึกษา
+                    </h3>
+                    <div class="relative border-l-2 border-slate-200 ml-3 space-y-8">
+                        
+                        <div class="relative pl-8">
+                            <div class="absolute w-4 h-4 bg-primary rounded-full -left-[9px] top-1 ring-4 ring-white"></div>
+                            <span class="text-sm font-bold text-primary bg-primary/10 px-3 py-1 rounded-full">2021 - ปัจจุบัน</span>
+                            <h4 class="text-lg font-bold text-slate-800 mt-2">ปริญญาตรี เทคโนโลยีสารสนเทศและนวัตกรรมดิจิทัล(ITDI)</h4>
+                            <p class="text-slate-600">มหาวิทยาลัยราชภัฎสงขลา</p>
+                            <p class="text-sm text-slate-500 mt-1">ศึกษาด้านการพัฒนาซอฟต์แวร์, ออกแบบUX/UI</p>
+                        </div>
+
+                        <div class="relative pl-8">
+                            <div class="absolute w-4 h-4 bg-slate-300 rounded-full -left-[9px] top-1 ring-4 ring-white"></div>
+                            <span class="text-sm font-bold text-slate-600 bg-slate-100 px-3 py-1 rounded-full">2020 - 2022</span>
+                            <h4 class="text-lg font-bold text-slate-800 mt-2">มัธยมศึกษาตอนปลาย (ศิลป์ทั่วไป)</h4>
+                            <p class="text-slate-600">โรงเรียนอุดมวิทยายน</p>
+                        </div>
+
+                    </div>
+                </div>
+
+                <!-- Info Cards -->
+                <div class="w-full lg:w-1/2" data-aos="fade-left">
+                    <h3 class="text-2xl font-bold text-slate-800 mb-6 flex items-center gap-2">
+                        <i class="fas fa-user text-primary"></i> ข้อมูลส่วนตัว
+                    </h3>
+                    <p class="text-slate-600 mb-6 leading-relaxed">
+                        ผมเป็นคนชอบเรียนรู้เทคโนโลยีใหม่ๆ อยู่เสมอ สนุกกับการแก้ปัญหาและสร้างสรรค์ผลงานที่ใช้งานได้จริง มีความรับผิดชอบ ทำงานร่วมกับผู้อื่นได้ดี และพร้อมที่จะเปิดรับคำแนะนำเพื่อพัฒนาตัวเองอย่างต่อเนื่อง
+                    </p>
+                    
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div class="bg-slate-50 p-4 rounded-xl border border-slate-100 flex items-start gap-4">
+                            <div class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center text-primary shrink-0">
+                                <i class="fas fa-calendar-alt"></i>
+                            </div>
+                            <div>
+                                <p class="text-sm text-slate-500">วันเกิด</p>
+                                <p class="font-semibold text-slate-800">27 กันยายน 2004</p>
+                            </div>
+                        </div>
+                        <div class="bg-slate-50 p-4 rounded-xl border border-slate-100 flex items-start gap-4">
+                            <div class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center text-primary shrink-0">
+                                <i class="fas fa-phone-alt"></i>
+                            </div>
+                            <div>
+                                <p class="text-sm text-slate-500">เบอร์โทรศัพท์</p>
+                                <p class="font-semibold text-slate-800">093-5109382</p>
+                            </div>
+                        </div>
+                        <div class="bg-slate-50 p-4 rounded-xl border border-slate-100 flex items-start gap-4">
+                            <div class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center text-primary shrink-0">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <div>
+                                <p class="text-sm text-slate-500">อีเมล</p>
+                                <p class="font-semibold text-slate-800 text-sm md:text-base break-all">pathomporn3510@gmail.com</p>
+                            </div>
+                        </div>
+                        <div class="bg-slate-50 p-4 rounded-xl border border-slate-100 flex items-start gap-4">
+                            <div class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center text-primary shrink-0">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <div>
+                                <p class="text-sm text-slate-500">ที่อยู่ปัจจุบัน</p>
+                                <p class="font-semibold text-slate-800">39 หมู่9 ต.ขอนหาด อ.ชะอวด จ.นครศรีธรรมราช 80180</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="py-20 bg-slate-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h2 class="text-3xl font-bold text-slate-800 inline-block relative">
+                    ทักษะและความสามารถ
+                    <div class="absolute w-1/2 h-1 bg-primary bottom-0 left-1/4 rounded-full mt-2"></div>
+                </h2>
+                <p class="text-slate-500 mt-4">ทักษะที่ได้เรียนรู้และนำไปใช้ในโปรเจกต์ต่างๆ</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+                
+                <!-- Frontend Card -->
+                <div class="bg-white rounded-2xl p-8 shadow-sm hover:shadow-xl transition-shadow border border-slate-100" data-aos="fade-up" data-aos-delay="100">
+                    <div class="w-14 h-14 bg-blue-100 rounded-xl flex items-center justify-center text-blue-600 text-2xl mb-6">
+                        <i class="fas fa-laptop-code"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-slate-800 mb-4">Frontend & Hardware</h3>
+                    
+                    <div class="space-y-4">
+                        <div>
+                            <div class="flex justify-between text-sm mb-1">
+                                <span class="font-medium text-slate-700">HTML / CSS / JS</span>
+                                <span class="text-slate-500">35%</span>
+                            </div>
+                            <div class="w-full bg-slate-100 rounded-full h-2">
+                                <div class="bg-blue-500 h-2 rounded-full" style="width: 35%"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between text-sm mb-1">
+                                <span class="font-medium text-slate-700">C++ / Arduino IDE (IoT)</span>
+                                <span class="text-slate-500">40%</span>
+                            </div>
+                            <div class="w-full bg-slate-100 rounded-full h-2">
+                                <div class="bg-teal-500 h-2 rounded-full" style="width: 40%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tools & Others Card -->
+                <div class="bg-white rounded-2xl p-8 shadow-sm hover:shadow-xl transition-shadow border border-slate-100" data-aos="fade-up" data-aos-delay="200">
+                    <div class="w-14 h-14 bg-purple-100 rounded-xl flex items-center justify-center text-purple-600 text-2xl mb-6">
+                        <i class="fas fa-tools"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-slate-800 mb-4">Tools & Design</h3>
+                    
+                    <div class="flex flex-wrap gap-2">
+                        <span class="px-4 py-2 bg-slate-100 text-slate-700 rounded-lg text-sm font-medium hover:bg-slate-200 cursor-default transition-colors">Figma</span>
+                        <span class="px-4 py-2 bg-slate-100 text-slate-700 rounded-lg text-sm font-medium hover:bg-slate-200 cursor-default transition-colors">VS Code</span>
+                        <span class="px-4 py-2 bg-slate-100 text-slate-700 rounded-lg text-sm font-medium hover:bg-slate-200 cursor-default transition-colors">Google Apps Script</span>
+                    </div>
+
+                    <h4 class="text-sm font-bold text-slate-800 mt-6 mb-3 uppercase tracking-wider">Soft Skills</h4>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="px-3 py-1 border border-primary/30 text-primary rounded-full text-xs font-semibold">Teamwork</span>
+                        <span class="px-3 py-1 border border-primary/30 text-primary rounded-full text-xs font-semibold">Problem Solving</span>
+                        <span class="px-3 py-1 border border-primary/30 text-primary rounded-full text-xs font-semibold">Time Management</span>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row justify-between items-end mb-12" data-aos="fade-up">
+                <div>
+                    <h2 class="text-3xl font-bold text-slate-800 inline-block relative">
+                        ผลงานเด่น (Projects)
+                        <div class="absolute w-1/2 h-1 bg-primary bottom-0 left-0 rounded-full mt-2"></div>
+                    </h2>
+                    <p class="text-slate-500 mt-4 max-w-2xl">โปรเจกต์ที่ทำในรายวิชาต่างๆ และโปรเจกต์ส่วนตัวที่ทำขึ้นเพื่อฝึกฝนทักษะ</p>
+                </div>
+            </div>
+
+            <!-- Project Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                
+                <!-- Project 1 : SocialAnalytics -->
+                <div class="bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-2xl transition-all duration-300 group flex flex-col" data-aos="fade-up" data-aos-delay="100">
+                    <a href="https://script.google.com/a/macros/parichat.skru.ac.th/s/AKfycbzFHjATxmFyu9TscEz1n4aBETVE94rHbnJAIazplXzub49aqPVjVOlKpLZvfDnC26B-eg/exec" target="_blank" class="relative h-48 overflow-hidden block">
+                        <img src="https://i.postimg.cc/tCVyTrCY/web.png" alt="SocialAnalytics Dashboard" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500 bg-slate-100" onerror="this.src='https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80'">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center p-4">
+                            <span class="px-5 py-2.5 bg-white text-primary rounded-full font-bold shadow-lg transform translate-y-4 group-hover:translate-y-0 transition-all duration-300 flex items-center gap-2">
+                                ดูเว็บไซต์จริง <i class="fas fa-external-link-alt"></i>
+                            </span>
+                        </div>
+                    </a>
+                    <div class="p-6 flex flex-col flex-grow">
+                        <div class="flex flex-wrap gap-2 mb-3">
+                            <span class="text-xs font-semibold px-2 py-1 bg-blue-100 text-blue-700 rounded-md">HTML/CSS/JS</span>
+                            <span class="text-xs font-semibold px-2 py-1 bg-green-100 text-green-700 rounded-md">Google Apps Script</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-slate-800 mb-2 group-hover:text-primary transition-colors">SocialAnalytics: Dashboard วิเคราะห์ยอดขาย</h3>
+                        <p class="text-slate-600 text-sm line-clamp-3 mb-4 flex-grow">
+                            พัฒนาระบบ Web App Dashboard สำหรับร้านค้าออนไลน์ เพื่อสรุปข้อมูลภาพรวมยอดขายรวม จำนวนออเดอร์ และวิเคราะห์สัดส่วนยอดขายตามช่องทางโซเชียลมีเดียต่างๆ (เช่น Line OA, Instagram, TikTok) นำเสนอในรูปแบบกราฟิกและตารางข้อมูลที่ดูง่ายและทันสมัย
+                        </p>
+                        <div class="flex items-center justify-between pt-4 border-t border-slate-100 mt-auto">
+                            <a href="https://script.google.com/a/macros/parichat.skru.ac.th/s/AKfycbzFHjATxmFyu9TscEz1n4aBETVE94rHbnJAIazplXzub49aqPVjVOlKpLZvfDnC26B-eg/exec" target="_blank" class="text-sm font-bold text-primary hover:text-indigo-800 flex items-center gap-1 bg-primary/10 px-3 py-1.5 rounded-lg transition-colors">
+                                <i class="fas fa-globe"></i> Live Demo
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 2 : Bear Cafe UI/UX -->
+                <div class="bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-2xl transition-all duration-300 group flex flex-col" data-aos="fade-up" data-aos-delay="200">
+                    <a href="https://www.figma.com/proto/EnS4PNpd57yuWDgMncoFrr/Untitled?node-id=4-19&t=tGGmEprCdcl9r0e6-0&scaling=scale-down&content-scaling=fixed&page-id=0%3A1&starting-point-node-id=4%3A22&show-proto-sidebar=1" target="_blank" class="relative h-48 overflow-hidden block">
+                        <img src="https://i.postimg.cc/ZnSg5Lfy/figma.png" alt="Bear Cafe UI Design" class="w-full h-full object-cover object-top group-hover:scale-110 transition-transform duration-500 bg-slate-100">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center p-4">
+                            <span class="px-5 py-2.5 bg-white text-purple-600 rounded-full font-bold shadow-lg transform translate-y-4 group-hover:translate-y-0 transition-all duration-300 flex items-center gap-2">
+                                ดู Prototype <i class="fab fa-figma"></i>
+                            </span>
+                        </div>
+                    </a>
+                    <div class="p-6 flex flex-col flex-grow">
+                        <div class="flex flex-wrap gap-2 mb-3">
+                            <span class="text-xs font-semibold px-2 py-1 bg-purple-100 text-purple-700 rounded-md">Figma</span>
+                            <span class="text-xs font-semibold px-2 py-1 bg-pink-100 text-pink-700 rounded-md">UI/UX Design</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-slate-800 mb-2 group-hover:text-purple-600 transition-colors">UI/UX Design: แอป Bear Cafe</h3>
+                        <p class="text-slate-600 text-sm line-clamp-3 mb-4 flex-grow">
+                            ออกแบบ User Interface และสร้าง Interactive Prototype สำหรับแอปพลิเคชันสั่งเครื่องดื่มและเบเกอรี่ "Bear Cafe" ด้วยโปรแกรม Figma ดีไซน์โทนสีสบายตา เน้นให้ผู้ใช้งานสามารถดูเมนู เพิ่มลงตะกร้า และทำรายการชำระเงินได้อย่างง่ายดาย
+                        </p>
+                        <div class="flex items-center justify-between pt-4 border-t border-slate-100 mt-auto">
+                            <a href="https://www.figma.com/proto/EnS4PNpd57yuWDgMncoFrr/Untitled?node-id=4-19&t=tGGmEprCdcl9r0e6-0&scaling=scale-down&content-scaling=fixed&page-id=0%3A1&starting-point-node-id=4%3A22&show-proto-sidebar=1" target="_blank" class="text-sm font-bold text-purple-600 hover:text-purple-800 flex items-center gap-1 bg-purple-50 px-3 py-1.5 rounded-lg transition-colors">
+                                <i class="fab fa-figma"></i> Play Prototype
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 3 : Smartlite IoT (อัปเดตใหม่) -->
+                <div class="bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-2xl transition-all duration-300 group flex flex-col" data-aos="fade-up" data-aos-delay="300">
+                    <a href="https://i.postimg.cc/kg6kwDt5/iot-1.jpg" target="_blank" class="relative h-48 overflow-hidden block border-b border-slate-100">
+                        <!-- ใช้รูป iot-1.jpg ที่คุณส่งมา เป็นภาพหน้าปก -->
+                        <img src="https://i.postimg.cc/kg6kwDt5/iot-1.jpg" alt="SMARTLITE IOT" class="w-full h-full object-cover object-top group-hover:scale-110 transition-transform duration-500 bg-slate-100">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center p-4">
+                            <span class="px-5 py-2.5 bg-white text-teal-600 rounded-full font-bold shadow-lg transform translate-y-4 group-hover:translate-y-0 transition-all duration-300 flex items-center gap-2">
+                                ดูรูปภาพ <i class="fas fa-image"></i>
+                            </span>
+                        </div>
+                    </a>
+                    <div class="p-6 flex flex-col flex-grow">
+                        <div class="flex flex-wrap gap-2 mb-3">
+                            <span class="text-xs font-semibold px-2 py-1 bg-teal-100 text-teal-700 rounded-md">IoT</span>
+                            <span class="text-xs font-semibold px-2 py-1 bg-blue-100 text-blue-700 rounded-md">NodeMCU</span>
+                            <span class="text-xs font-semibold px-2 py-1 bg-orange-100 text-orange-700 rounded-md">Smart Home</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-slate-800 mb-2 group-hover:text-teal-600 transition-colors">SMARTLITE IOT: ระบบไฟอัจฉริยะ</h3>
+                        <p class="text-slate-600 text-sm line-clamp-3 mb-4 flex-grow">
+                            โครงงานพัฒนาระบบบ้านอัจฉริยะ (Smart Home) โดยใช้บอร์ดไมโครคอนโทรลเลอร์ NodeMCU (ESP8266) ทำงานร่วมกับเซ็นเซอร์ต่างๆ เพื่อควบคุมการเปิด-ปิดไฟอัตโนมัติ ตรวจวัดสภาพแวดล้อม และสามารถสั่งการอุปกรณ์ไฟฟ้าผ่านสมาร์ทโฟนได้ เพื่อความสะดวกและประหยัดพลังงาน
+                        </p>
+                        <div class="flex items-center justify-between pt-4 border-t border-slate-100 mt-auto">
+                            <!-- ลิงก์ไปยังรูปภาพโปสเตอร์ -->
+                            <a href="https://i.postimg.cc/kg6kwDt5/iot-1.jpg" target="_blank" class="text-sm font-bold text-teal-600 hover:text-teal-800 flex items-center gap-1 bg-teal-50 px-3 py-1.5 rounded-lg transition-colors">
+                                <i class="fas fa-search-plus"></i> ดูรายละเอียดผลงาน
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 4 : ระบบ PPAP -->
+                <div class="bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-2xl transition-all duration-300 group flex flex-col" data-aos="fade-up" data-aos-delay="400">
+                    <a href="https://script.google.com/a/macros/parichat.skru.ac.th/s/AKfycbyK_-mNFpsjqC68yv5FSywvKpHvjCRma7lwALfleAbvp1tXvuKLD8aFz7YcH6Gf97Xt/exec" target="_blank" class="relative h-48 overflow-hidden block border-b border-slate-100">
+                        <img src="https://i.postimg.cc/vH3VXZwz/ppap.png" alt="ระบบ PPAP" class="w-full h-full object-cover object-top group-hover:scale-110 transition-transform duration-500 bg-slate-100">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center p-4">
+                            <span class="px-5 py-2.5 bg-white text-blue-600 rounded-full font-bold shadow-lg transform translate-y-4 group-hover:translate-y-0 transition-all duration-300 flex items-center gap-2">
+                                เข้าสู่เว็บไซต์ <i class="fas fa-external-link-alt"></i>
+                            </span>
+                        </div>
+                    </a>
+                    <div class="p-6 flex flex-col flex-grow">
+                        <div class="flex flex-wrap gap-2 mb-3">
+                            <span class="text-xs font-semibold px-2 py-1 bg-blue-100 text-blue-700 rounded-md">Web App</span>
+                            <span class="text-xs font-semibold px-2 py-1 bg-green-100 text-green-700 rounded-md">Google Apps Script</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-slate-800 mb-2 group-hover:text-blue-600 transition-colors">ระบบ PPAP (Production Part Approval)</h3>
+                        <p class="text-slate-600 text-sm line-clamp-3 mb-4 flex-grow">
+                            พัฒนาระบบ Web Application สำหรับจัดการและอนุมัติเอกสาร PPAP ด้วย Google Apps Script ช่วยลดขั้นตอนการทำงานเอกสารแบบแมนนวล เปลี่ยนเป็นระบบออนไลน์ที่สามารถติดตามสถานะ อนุมัติ และตรวจสอบข้อมูลได้อย่างสะดวกรวดเร็ว
+                        </p>
+                        <div class="flex items-center justify-between pt-4 border-t border-slate-100 mt-auto">
+                            <a href="https://script.google.com/a/macros/parichat.skru.ac.th/s/AKfycbyK_-mNFpsjqC68yv5FSywvKpHvjCRma7lwALfleAbvp1tXvuKLD8aFz7YcH6Gf97Xt/exec" target="_blank" class="text-sm font-bold text-blue-600 hover:text-blue-800 flex items-center gap-1 bg-blue-50 px-3 py-1.5 rounded-lg transition-colors">
+                                <i class="fas fa-globe"></i> เข้าใช้งานระบบ
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 5 : แอปพลิเคชันจองหนังสือ -->
+                <div class="bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-2xl transition-all duration-300 group flex flex-col" data-aos="fade-up" data-aos-delay="500">
+                    <a href="https://www.figma.com/proto/AvjveFIWubrI5ezpq4TgeU/Untitled?node-id=9-2852&t=tGGmEprCdcl9r0e6-0&scaling=min-zoom&content-scaling=fixed&page-id=1%3A1341&starting-point-node-id=9%3A2852&show-proto-sidebar=1" target="_blank" class="relative h-48 overflow-hidden block border-b border-slate-100">
+                        <img src="https://i.postimg.cc/Y9zssW3N/rabb-cxng-hn-ngs-xph-an-xaep.png" alt="แอปพลิเคชันจองหนังสือ" class="w-full h-full object-cover object-top group-hover:scale-110 transition-transform duration-500 bg-slate-100">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center p-4">
+                            <span class="px-5 py-2.5 bg-white text-purple-600 rounded-full font-bold shadow-lg transform translate-y-4 group-hover:translate-y-0 transition-all duration-300 flex items-center gap-2">
+                                ดู Prototype <i class="fab fa-figma"></i>
+                            </span>
+                        </div>
+                    </a>
+                    <div class="p-6 flex flex-col flex-grow">
+                        <div class="flex flex-wrap gap-2 mb-3">
+                            <span class="text-xs font-semibold px-2 py-1 bg-purple-100 text-purple-700 rounded-md">Figma</span>
+                            <span class="text-xs font-semibold px-2 py-1 bg-pink-100 text-pink-700 rounded-md">UI/UX Design</span>
+                            <span class="text-xs font-semibold px-2 py-1 bg-slate-100 text-slate-700 rounded-md">Mobile App</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-slate-800 mb-2 group-hover:text-purple-600 transition-colors">UI/UX Design: แอปพลิเคชันจองหนังสือ</h3>
+                        <p class="text-slate-600 text-sm line-clamp-3 mb-4 flex-grow">
+                            ออกแบบ User Interface สำหรับแอปพลิเคชันค้นหาและจองหนังสือ โดยเน้นประสบการณ์ผู้ใช้ (UX) ที่ดี ช่วยให้ผู้ใช้งานสามารถค้นหาหมวดหมู่หนังสือ ตรวจสอบสถานะว่าหนังสือว่างหรือไม่ และทำการกดจอง-ยืมได้อย่างรวดเร็วและสะดวกสบายผ่านสมาร์ทโฟน
+                        </p>
+                        <div class="flex items-center justify-between pt-4 border-t border-slate-100 mt-auto">
+                            <a href="https://www.figma.com/proto/AvjveFIWubrI5ezpq4TgeU/Untitled?node-id=9-2852&t=tGGmEprCdcl9r0e6-0&scaling=min-zoom&content-scaling=fixed&page-id=1%3A1341&starting-point-node-id=9%3A2852&show-proto-sidebar=1" target="_blank" class="text-sm font-bold text-purple-600 hover:text-purple-800 flex items-center gap-1 bg-purple-50 px-3 py-1.5 rounded-lg transition-colors">
+                                <i class="fab fa-figma"></i> Play Prototype
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 6 : Flutter Mobile App -->
+                <div class="bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-2xl transition-all duration-300 group flex flex-col" data-aos="fade-up" data-aos-delay="600">
+                    <a href="https://drive.google.com/file/d/1IBGF1q4EartVwzZekT0THl90Zzqf-a4D/view" target="_blank" class="relative h-48 overflow-hidden block border-b border-slate-100">
+                        <img src="https://i.postimg.cc/QdDSRtFg/flutter.png" alt="Flutter Mobile App" class="w-full h-full object-cover object-top group-hover:scale-110 transition-transform duration-500 bg-slate-100">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center p-4">
+                            <span class="px-5 py-2.5 bg-white text-blue-500 rounded-full font-bold shadow-lg transform translate-y-4 group-hover:translate-y-0 transition-all duration-300 flex items-center gap-2">
+                                ดูรายละเอียด <i class="fas fa-play-circle"></i>
+                            </span>
+                        </div>
+                    </a>
+                    <div class="p-6 flex flex-col flex-grow">
+                        <div class="flex flex-wrap gap-2 mb-3">
+                            <span class="text-xs font-semibold px-2 py-1 bg-blue-50 text-blue-600 rounded-md border border-blue-200">Flutter</span>
+                            <span class="text-xs font-semibold px-2 py-1 bg-cyan-50 text-cyan-600 rounded-md border border-cyan-200">Dart</span>
+                            <span class="text-xs font-semibold px-2 py-1 bg-slate-100 text-slate-700 rounded-md">Mobile App</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-slate-800 mb-2 group-hover:text-blue-500 transition-colors">Mobile App Development (Flutter)</h3>
+                        <p class="text-slate-600 text-sm line-clamp-3 mb-4 flex-grow">
+                            พัฒนาแอปพลิเคชันบนสมาร์ทโฟนด้วย Framework Flutter และภาษา Dart รองรับการทำงานแบบ Cross-platform ทั้ง iOS และ Android เน้นการออกแบบ UI ที่ทันสมัยสวยงาม และการทำงานที่ลื่นไหลเพื่อประสบการณ์ที่ดีของผู้ใช้งาน
+                        </p>
+                        <div class="flex items-center justify-between pt-4 border-t border-slate-100 mt-auto">
+                            <a href="https://drive.google.com/file/d/1IBGF1q4EartVwzZekT0THl90Zzqf-a4D/view" target="_blank" class="text-sm font-bold text-blue-600 hover:text-blue-800 flex items-center gap-1 bg-blue-50 px-3 py-1.5 rounded-lg transition-colors">
+                                <i class="fas fa-external-link-alt"></i> ดูผลงาน (Google Drive)
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 bg-dark text-white relative overflow-hidden">
+        <!-- Decorative bg -->
+        <div class="absolute top-0 right-0 w-64 h-64 bg-primary/20 rounded-full mix-blend-screen filter blur-3xl"></div>
+        <div class="absolute bottom-0 left-0 w-64 h-64 bg-secondary/20 rounded-full mix-blend-screen filter blur-3xl"></div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h2 class="text-3xl font-bold inline-block relative">
+                    ติดต่อฉัน
+                    <div class="absolute w-1/2 h-1 bg-secondary bottom-0 left-1/4 rounded-full mt-2"></div>
+                </h2>
+                <p class="text-slate-400 mt-4">สนใจพูดคุย หรือให้โอกาสฝึกงาน ติดต่อได้เลยครับ ยินดีตอบกลับอย่างรวดเร็ว</p>
+            </div>
+
+            <div class="max-w-2xl mx-auto bg-white/10 backdrop-blur-lg border border-white/10 p-8 md:p-12 rounded-3xl shadow-2xl" data-aos="zoom-in">
+                <!-- Contact Info -->
+                <div>
+                    <h3 class="text-2xl font-bold mb-8 text-center">ข้อมูลติดต่อ</h3>
+                    <div class="flex flex-col gap-5 items-center">
+                        
+                        <!-- Email -->
+                        <a href="mailto:student@university.ac.th" class="flex items-center gap-5 text-slate-300 hover:text-white transition-all group bg-white/5 hover:bg-white/10 p-5 rounded-2xl border border-white/5 hover:border-white/10 w-full max-w-sm">
+                            <div class="w-14 h-14 bg-white/10 group-hover:bg-primary/80 rounded-full flex items-center justify-center text-xl transition-all shadow-lg shrink-0">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <div>
+                                <p class="text-sm text-slate-400 mb-0.5">Email</p>
+                                <p class="font-medium text-white break-all">pathomporn3510@gmail.com</p>
+                            </div>
+                        </a>
+                        
+                        <!-- Phone -->
+                        <div class="flex items-center gap-5 text-slate-300 group bg-white/5 p-5 rounded-2xl border border-white/5 w-full max-w-sm">
+                            <div class="w-14 h-14 bg-white/10 group-hover:bg-primary/80 rounded-full flex items-center justify-center text-xl transition-all shadow-lg shrink-0">
+                                <i class="fas fa-phone-alt"></i>
+                            </div>
+                            <div>
+                                <p class="text-sm text-slate-400 mb-0.5">Phone</p>
+                                <p class="font-medium text-white">093-5109382</p>
+                            </div>
+                        </div>
+
+                        <!-- Line -->
+                        <a href="#" target="_blank" class="flex items-center gap-5 text-slate-300 hover:text-white transition-all group bg-white/5 hover:bg-white/10 p-5 rounded-2xl border border-white/5 hover:border-[#00C300]/30 w-full max-w-sm">
+                            <div class="w-14 h-14 bg-white/10 group-hover:bg-[#00C300] rounded-full flex items-center justify-center text-2xl transition-all shadow-lg shrink-0">
+                                <i class="fab fa-line"></i>
+                            </div>
+                            <div>
+                                <p class="text-sm text-slate-400 mb-0.5">Line ID</p>
+                                <p class="font-medium text-white break-all">miw_pathomporn_</p>
+                            </div>
+                        </a>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-[#0b1120] text-slate-400 py-8 border-t border-white/10">
+        <div class="max-w-7xl mx-auto px-4 text-center">
+            <p>&copy; 2026 Pathomporn Ruangkeaw. All rights reserved.</p>
+            <p class="text-sm mt-2">Designed with <i class="fas fa-heart text-red-500 mx-1"></i> & Tailwind CSS</p>
+        </div>
+    </footer>
+
+    <!-- Back to top button -->
+    <a href="#home" class="fixed bottom-8 right-8 w-12 h-12 bg-primary text-white rounded-full flex items-center justify-center shadow-lg hover:bg-indigo-700 hover:-translate-y-1 transition-all z-50 opacity-0 invisible" id="backToTop">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+
+    <!-- Scripts -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        // Initialize AOS Animation
+        AOS.init({
+            once: true,
+            offset: 100,
+        });
+
+        // Mobile Menu Toggle
+        const btn = document.getElementById('mobile-menu-btn');
+        const menu = document.getElementById('mobile-menu');
+        const mobileLinks = document.querySelectorAll('.mobile-link');
+
+        btn.addEventListener('click', () => {
+            menu.classList.toggle('hidden');
+        });
+
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                menu.classList.add('hidden');
+            });
+        });
+
+        // Navbar Scroll Effect & Back to Top Button
+        const navbar = document.getElementById('navbar');
+        const backToTop = document.getElementById('backToTop');
+
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('shadow-md');
+                backToTop.classList.remove('opacity-0', 'invisible');
+                backToTop.classList.add('opacity-100', 'visible');
+            } else {
+                navbar.classList.remove('shadow-md');
+                backToTop.classList.add('opacity-0', 'invisible');
+                backToTop.classList.remove('opacity-100', 'visible');
+            }
+        });
+    </script>
+</body>
+</html>
